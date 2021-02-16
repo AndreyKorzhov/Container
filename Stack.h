@@ -7,18 +7,18 @@
 using namespace std;
 
 template<class T>
-class Stack {
+class Queue {
 private:
     vector<T> container;
 public:
-    Stack() {}
-    Stack(vector<T> container)
+    Queue() {}
+    Queue(vector<T> container)
     {
         this->container = container;
     }
     //TODO Написать конструктор копирования
     /*
-    Stack(Stack stack)
+    Stack(Queue stack)
     {
         container = stack;
     }
@@ -26,16 +26,19 @@ public:
 
     void Push(T value)
     {
+       /* auto it = container.cbegin();
+        container.insert(it,value);*///В начало
+
         container.push_back(value);
     }
-    T Pop()
+    T Pop_dequeue()
     {
         if (isEmpty()) {
             throw Exception::Bottom;
         } else {
-            auto end = container.end();
-            T temp = *(end-1);
-            container.pop_back();
+            auto iter = container.begin();
+            T temp = *iter;
+            container.erase(iter);
             return temp;
         }
     }
@@ -45,8 +48,8 @@ public:
         if (isEmpty()) {
             throw Exception::Bottom;
         } else {
-            auto end = container.end();
-            T temp = *(end - 1);
+            auto iter = container.begin();
+            T temp = *iter;
             return temp;
         }
     }
@@ -71,17 +74,23 @@ public:
 
     void ForEach(void(*Func)(T))
     {
-        for (auto i = container.rbegin(); i < container.rend(); ++i) {
+        for (auto i = container.begin(); i < container.end(); ++i) {
             Func(*i);
         }
     }
     void ForEach(T(*Func)(T))
     {
-        for (auto i = container.rbegin(); i < container.rend(); ++i) {
+        for (auto i = container.begin(); i < container.end(); ++i) {
             *i = Func(*i);
         }
     }
 
+    void SizeContainer(void(*Func)(T))
+    {
+        int num = container.size();
+        Func (num);
+
+    }
 };
 
 #endif //CONTAINER_STACK_H

@@ -7,9 +7,9 @@
 using namespace std;
 
 template<typename D>
-void PrintEmpty(Stack<D> stack)
+void PrintEmpty(Queue<D> queue)
 {
-    if (stack.isEmpty()) {
+    if (queue.isEmpty()) {
         cout << "Стек пустой" << endl;
     } else {
         cout << "Стек не пустой" << endl;
@@ -24,6 +24,10 @@ void Print(int num)
 int Add10(int num)
 {
     return num + 10;
+}
+void PrintSize(int num)
+{
+cout << "Size : " << num << endl;
 }
 
 #endif //CONTAINER_UTILITES_H

@@ -8,16 +8,22 @@ using namespace std;
 int main() {
     system("chcp 65001");
 
-    Stack<int> stack;
-    PrintEmpty(stack);
+    Queue<int> queue;
+    PrintEmpty(queue);
 
-    stack.Push(5);
-    stack.Push(7);
-    PrintEmpty(stack);
+    queue.Push(5);
+    queue.Push(7);
+    queue.Push(10);
+    PrintEmpty(queue);
+    queue.SizeContainer(PrintSize);
+    queue.ForEach(Print);
+    queue.Pop_dequeue();
+    queue.SizeContainer(PrintSize);
 
-    stack.ForEach(Print);
-    stack.ForEach(Add10);
-    stack.ForEach(Print);
+    queue.ForEach(Print);
+    queue.SizeContainer(PrintSize);
+    queue.ForEach(Add10);
+    queue.ForEach(Print);
     
     return 0;
 }
